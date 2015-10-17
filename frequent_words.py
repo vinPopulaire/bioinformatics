@@ -38,33 +38,33 @@ def num_to_pattern(num, k):
 
     return pattern + sym
 
-def create_list(k):
-    return [0]*(4**k)
-
-def max_list(frequency_list):
+def max_list(dictionary):
 
     maximum = 0
     max_list = []
 
-    for index, k_mer in enumerate(frequency_list):
+    for key, k_mer in dictionary.items():
         if (maximum < k_mer):
             maximum = k_mer
-            max_list = [index]
+            max_list = [key]
         elif (maximum == k_mer):
-            max_list.append(index)
+            max_list.append(key)
     return max_list
 
 def frequent_words(text, k):
     result = []
 
-    frequency_list = create_list(k)
+    frequency_hash = {}
 
     for i in range(0, len(text)-k+1):
         current = text[i:i+k]
         index = pattern_to_num(current)
-        frequency_list[index] += 1
+        if index in frequency_hash:
+            frequency_hash[index] += 1
+        else:
+            frequency_hash.setdefault(index, 1)
 
-    most_frequent = max_list(frequency_list)
+    most_frequent = max_list(frequency_hash)
     for k_mer in most_frequent:
         result.append(num_to_pattern(k_mer, k))
     return result
