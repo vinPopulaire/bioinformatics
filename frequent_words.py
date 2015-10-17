@@ -6,22 +6,22 @@ def read_input():
 def sym_to_num(sym):
     if sym == "A":
         return 0
-    elif sym == "T":
-        return 1
     elif sym == "C":
-        return 2
+        return 1
     elif sym == "G":
+        return 2
+    elif sym == "T":
         return 3
 
 def num_to_sym(num):
     if num == 0:
         return "A"
     elif num == 1:
-        return "T"
-    elif num == 2:
         return "C"
-    elif num == 3:
+    elif num == 2:
         return "G"
+    elif num == 3:
+        return "T"
 
 def pattern_to_num(pattern):
     if len(pattern) == 0:
