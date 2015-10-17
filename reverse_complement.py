@@ -1,6 +1,7 @@
-def read_input(filename):
-    file = open(filename,'r')
-    return file.readlines()
+import sys
+
+def read_input():
+    return sys.stdin.read().splitlines()
 
 def complement(base):
     if base == "A":
@@ -18,7 +19,6 @@ def reverse_complement(pattern):
         result[i] = complement(pattern[-1-i])
     return result
 
-data = read_input("data.txt")
-text = data[0].strip()
-
-print ''.join(reverse_complement(text))
+data = read_input()
+result = reverse_complement(data[0].strip())
+print(''.join(result))
